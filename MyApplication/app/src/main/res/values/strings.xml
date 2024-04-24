@@ -2,4 +2,16 @@
     <string name="app_name">HelloApplication</string>
     <string name="message">Hello</string>
     <string name="nice_day_msg"> \nHave a nice day!</string>
+    <string-array name="country">
+        <item>VietNam</item>
+        <item>Lao</item>
+        <item>Chinese</item>
+        <item>American</item>
+    </string-array>
+    <string-array name="operator">
+        <item>+</item>
+        <item>-</item>
+        <item>*</item>
+        <item>/</item>
+    </string-array>
 </resources>
