@@ -36,14 +36,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/male"
+                    android:id="@+id/rbmale"
                     android:text="Male"
                     android:checked="true" />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Female"
-                    android:id="@+id/female" />
+                    android:id="@+id/rbfemale" />
             </RadioGroup>
             <RatingBar
                 android:id="@+id/rating"
@@ -69,6 +69,7 @@
                 android:id="@+id/sp3"
                 />
             <Button
+                android:id="@+id/btSave"
                 android:text="Save"
                 android:textSize="20dp"
                 android:background="@drawable/mybutton"
@@ -79,7 +80,8 @@
                 android:id="@+id/kq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="4"
+                android:lines="10"
+                android:text="Result"
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"/>
         </LinearLayout>

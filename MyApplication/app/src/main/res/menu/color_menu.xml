@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mBlue"
+        android:title="Blue"
+        android:icon="@drawable/baseline_bungalow_24" />
+    <item android:id="@+id/mViolet"
+        android:title="Violet"
+        android:icon="@drawable/baseline_calendar_today_24" />
+    <item android:id="@+id/mYellow"
+        android:title="Yellow"
+        android:icon="@drawable/baseline_desktop_windows_24" />
+</menu>
