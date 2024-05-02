@@ -19,12 +19,15 @@ import java.util.List;
 public class CatInfoAdapter extends RecyclerView.Adapter<CatInfoAdapter.CatInfoViewHolder>{
     private Context context;
     private List<Cat> list;
+    private CatItemListener catItem;
 
     public CatInfoAdapter(Context context) {
         this.context = context;
         this.list = new ArrayList<>();
     }
-
+    public void setClickListener(CatItemListener catItem){
+        this.catItem = catItem;
+    }
     @NonNull
     @Override
     public CatInfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,6 +45,13 @@ public class CatInfoAdapter extends RecyclerView.Adapter<CatInfoAdapter.CatInfoV
         holder.tvName.setText(c.getName());
         holder.tvDesc.setText(c.getDesc());
         holder.tvPrice.setText(c.getPrice()+"");
+        holder.btRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -49,7 +59,7 @@ public class CatInfoAdapter extends RecyclerView.Adapter<CatInfoAdapter.CatInfoV
         return list != null? list.size():0;
     }
 
-    public class CatInfoViewHolder extends RecyclerView.ViewHolder{
+    public class CatInfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView img;
         private TextView tvName, tvDesc, tvPrice;
         private Button btRemove;
@@ -60,6 +70,28 @@ public class CatInfoAdapter extends RecyclerView.Adapter<CatInfoAdapter.CatInfoV
             tvDesc = view.findViewById(R.id.txtDesc);
             tvPrice = view.findViewById(R.id.txtPrice);
             btRemove = view.findViewById(R.id.btDelete);
+            view.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if(catItem != null){//nếu xh interface
+                catItem.onItemClick(v, getAdapterPosition());
+            }
+        }
+    }
+    public void add(Cat cat) {
+        list.add(cat);
+        notifyDataSetChanged();//làm mới lại recyclerview
+    }
+    public void update(int position, Cat cat) {
+        list.set(position, cat);
+        notifyDataSetChanged();
+    }
+    public Cat getItem(int position) {
+        return list.get(position);
+    }
+    public interface CatItemListener {
+        public void onItemClick(View view, int position);
     }
 }

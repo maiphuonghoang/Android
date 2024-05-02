@@ -4,7 +4,8 @@ public class Cat {
     private int img;
     private String name, desc;
     private double price;
-
+    public Cat() {
+    }
     public Cat(int img, String name, String desc, double price) {
         this.img = img;
         this.name = name;
