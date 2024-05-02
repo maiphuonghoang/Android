@@ -1,6 +1,8 @@
 package com.example.myapplication.model;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +21,15 @@ import java.util.List;
 public class CatInfoAdapter extends RecyclerView.Adapter<CatInfoAdapter.CatInfoViewHolder>{
     private Context context;
     private List<Cat> list;
+    private List<Cat> listBackup;
     private CatItemListener catItem;
-
     public CatInfoAdapter(Context context) {
         this.context = context;
         this.list = new ArrayList<>();
+        listBackup = new ArrayList<>();
+    }
+    public List<Cat> getBackup(){
+        return listBackup;
     }
     public void setClickListener(CatItemListener catItem){
         this.catItem = catItem;
@@ -48,8 +54,26 @@ public class CatInfoAdapter extends RecyclerView.Adapter<CatInfoAdapter.CatInfoV
         holder.btRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                list.remove(position);
-                notifyDataSetChanged();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Delete alert");
+                builder.setMessage("Are you sure you want to delete " + c.getName() + "?");
+                builder.setIcon(R.drawable.baseline_delete_outline_24);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        listBackup.remove(position);
+                        list.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }
@@ -80,11 +104,17 @@ public class CatInfoAdapter extends RecyclerView.Adapter<CatInfoAdapter.CatInfoV
             }
         }
     }
+    public void filterList(List<Cat> filterList){
+        list = filterList;
+        notifyDataSetChanged();
+    }
     public void add(Cat cat) {
+        listBackup.add(cat);
         list.add(cat);
         notifyDataSetChanged();//làm mới lại recyclerview
     }
     public void update(int position, Cat cat) {
+        listBackup.set(position, cat);
         list.set(position, cat);
         notifyDataSetChanged();
     }

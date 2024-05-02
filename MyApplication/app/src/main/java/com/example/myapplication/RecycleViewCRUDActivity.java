@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,7 +20,11 @@ import com.example.myapplication.model.Cat;
 import com.example.myapplication.model.CatInfoAdapter;
 import com.example.myapplication.model.SpinnerAdapter;
 
-public class RecycleViewCRUDActivity extends AppCompatActivity implements CatInfoAdapter.CatItemListener{
+import java.util.ArrayList;
+import java.util.List;
+
+public class RecycleViewCRUDActivity extends AppCompatActivity
+        implements CatInfoAdapter.CatItemListener, SearchView.OnQueryTextListener {
     private int[] imgs = {R.drawable.cat, R.drawable.img, R.drawable.baseline_bungalow_24,
             R.drawable.baseline_calendar_today_24, R.drawable.baseline_desktop_windows_24, R.drawable.ic_launcher_foreground};
     private Spinner sp;
@@ -29,6 +33,8 @@ public class RecycleViewCRUDActivity extends AppCompatActivity implements CatInf
     private EditText eName, eDesc, ePrice;
     private Button btAdd, btUpdate;
     private int currentPos;
+    private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +51,7 @@ public class RecycleViewCRUDActivity extends AppCompatActivity implements CatInf
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(this);
+        searchView.setOnQueryTextListener(this);
         btAdd.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -108,6 +115,7 @@ public class RecycleViewCRUDActivity extends AppCompatActivity implements CatInf
         btAdd = findViewById(R.id.btAdd);
         btUpdate = findViewById(R.id.btUpdate);
         btUpdate.setEnabled(false);
+        searchView = findViewById(R.id.search);
     }
 
     @Override
@@ -129,4 +137,29 @@ public class RecycleViewCRUDActivity extends AppCompatActivity implements CatInf
         eDesc.setText(cat.getDesc());
         ePrice.setText(cat.getPrice() + "");
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String searchText) {
+        filter(searchText);
+        return false;
+    }
+    private void filter(String searchText) {
+        List<Cat> filterList = new ArrayList<>();
+        for(Cat i : adapter.getBackup()){
+            if(i.getName().toLowerCase().contains(searchText.toLowerCase())){
+                filterList.add(i);
+            }
+        }
+        if(filterList.isEmpty()){
+            Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
+        }else{
+            adapter.filterList(filterList);
+        }
+    }
+
 }
