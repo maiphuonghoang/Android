@@ -5,5 +5,9 @@
     <color name="colorPink">#f64c73</color>
     <color name="colorBlue">#3395ff</color>
     <color name="colorGreen">#8BC34A</color>
+    <color name="violet">#b26291</color>
+    <color name="orange">#f78a55</color>
+    <color name="grayblue">#2E4859</color>
+
 
 </resources>
