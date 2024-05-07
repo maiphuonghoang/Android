@@ -2,6 +2,8 @@ package com.example.secondapplication;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,11 +15,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.secondapplication.adapter.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class BottomNavigationMainActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
     private ViewPager viewPager;
-
+    private FloatingActionButton btFab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,13 @@ public class BottomNavigationMainActivity extends AppCompatActivity {
         });
         viewPager = findViewById(R.id.viewPager);
         navigationView = findViewById(R.id.navigation);
+        btFab = findViewById(R.id.fab);
+        btFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BottomNavigationMainActivity.this, "Click Floating Action Button", Toast.LENGTH_SHORT).show();
+            }
+        });
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), 4);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
