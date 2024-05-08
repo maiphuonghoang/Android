@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ImplicitIntentActivity">
+
+    <ImageView
+        android:id="@+id/web"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/google" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Google"
+        android:textSize="30dp" />
+
+    <ImageView
+        android:id="@+id/sms"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/sms" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SMS"
+        android:textSize="30dp" />
+
+    <ImageView
+        android:id="@+id/phone"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/dial" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone"
+        android:textSize="30dp" />
+</LinearLayout>
