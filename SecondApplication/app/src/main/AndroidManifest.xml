@@ -12,12 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SecondApplication"
         tools:targetApi="31">
+        <service
+            android:name=".BackgroundService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".IntentServiceActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".FilterActivity"
             android:exported="true">
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
-                <!-- open physical device to see result-->
+                <!-- open physical device to see result -->
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:scheme="https" />
@@ -25,14 +39,14 @@
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.SENDTO" />
-                <!-- bộ lọc khi chạy bằng App này-->
+                <!-- bộ lọc khi chạy bằng App này -->
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:scheme="sms" />
             </intent-filter>
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.DIAL" />
-                <!-- bộ lọc khi chạy bằng App này-->
+                <!-- bộ lọc khi chạy bằng App này -->
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:scheme="tel" />
@@ -42,10 +56,10 @@
             android:name=".IntentFilterActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--                <action android:name="android.intent.action.MAIN" />-->
                 <action android:name="android.intent.action.SEND" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:mimeType="text/plain" />
