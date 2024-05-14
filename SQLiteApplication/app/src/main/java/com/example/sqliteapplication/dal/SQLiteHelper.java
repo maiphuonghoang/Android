@@ -66,4 +66,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         return sqLiteDatabase.insert("items", null, values);
     }
+
+    public List<Item> getByDate(String date) {
+        List<Item> list = new ArrayList<>();
+        String whereClause = "date like ?";
+        String[] whereArgs = {date};
+        SQLiteDatabase st = getReadableDatabase();
+        Cursor rs = st.query("items", null, whereClause, whereArgs, null, null, null);
+        while (rs != null && rs.moveToNext()) {
+            int id = rs.getInt(0);
+            String title = rs.getString(1);
+            String category = rs.getString(2);
+            String price = rs.getString(3);
+            list.add(new Item(id, title, category, price, date));
+        }
+        return list;
+    }
 }
