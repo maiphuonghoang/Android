@@ -82,4 +82,23 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
         return list;
     }
+
+    public int update(Item i) {
+        ContentValues values = new ContentValues();
+        values.put("title", i.getTitle());
+        values.put("category", i.getCategory());
+        values.put("price", i.getPrice());
+        values.put("date", i.getDate());
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        String whereClause = "id=?";
+        String[] whereArgs = {Integer.toString(i.getId())};
+        return sqLiteDatabase.update("items", values, whereClause, whereArgs);
+    }
+
+    public int delete(int id) {
+        String whereClause = "id=?";
+        String[] whereArgs = {Integer.toString(id)};
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        return sqLiteDatabase.delete("items", whereClause, whereArgs);
+    }
 }
