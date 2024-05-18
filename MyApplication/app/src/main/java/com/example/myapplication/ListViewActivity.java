@@ -37,6 +37,7 @@ public class ListViewActivity extends AppCompatActivity {
         listView = findViewById(R.id.lview);
         initListView();
         tv = findViewById(R.id.tv);
+        //phải giữ chuột thì mới xuất hiện menu
         registerForContextMenu(tv);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -60,45 +61,49 @@ public class ListViewActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.mFile:
-//                Toast.makeText(this,"File", Toast.LENGTH_SHORT ).show();
-//                break;
-//            case R.id.mEmail:
-//                Toast.makeText(this,"Email", Toast.LENGTH_SHORT ).show();
-//                break;
-//            case R.id.mPhone:
-//                Toast.makeText(this,"Phone", Toast.LENGTH_SHORT ).show();
-//                break;
-//            case R.id.mExit:
-//                System.exit(0);
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        /*
+        if(item.getItemId() == R.id.mFile){
+            Toast.makeText(this,"File", Toast.LENGTH_SHORT ).show();
+        }
+         */
+        switch (item.getItemId()){
+            case R.id.mFile:
+                Toast.makeText(this,"File", Toast.LENGTH_SHORT ).show();
+                break;
+            case R.id.mEmail:
+                Toast.makeText(this,"Email", Toast.LENGTH_SHORT ).show();
+                break;
+            case R.id.mPhone:
+                Toast.makeText(this,"Phone", Toast.LENGTH_SHORT ).show();
+                break;
+            case R.id.mExit:
+                System.exit(0);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.color_menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
-//
-//    @Override
-//    public boolean onContextItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.mBlue:
-//                tv.setTextColor(Color.BLUE);
-//                break;
-//            case R.id.mViolet:
-//                tv.setTextColor(Color.RED);
-//                break;
-//            case R.id.mYellow:
-//                tv.setTextColor(Color.YELLOW);
-//                break;
-//        }
-//        return super.onContextItemSelected(item);
-//    }
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.mBlue:
+                tv.setTextColor(Color.BLUE);
+                break;
+            case R.id.mViolet:
+                tv.setTextColor(Color.RED);
+                break;
+            case R.id.mYellow:
+                tv.setTextColor(Color.YELLOW);
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
 
 
 }
