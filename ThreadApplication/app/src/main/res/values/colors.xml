@@ -7,6 +7,8 @@
     <color name="green">#8BC34A</color>
     <color name="violet">#b26291</color>
     <color name="orange">#f78a55</color>
+    <color name="yellow">#FFEB3B</color>
     <color name="grayblue">#2E4859</color>
+    <color name="gray">#D4DCE1</color>
     <color name="red">#F44336</color>
 </resources>
